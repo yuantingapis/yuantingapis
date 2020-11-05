@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package yuanting.yt.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "Yuanting.Yt.V1";
+option go_package = "github.com/yuantingapis/go-genproto/yuanting/yt;yt";
+option java_multiple_files = true;
+option java_outer_classname = "VendorProto";
+option java_package = "ltd.yuanting.yt";
+option objc_class_prefix = "YT";
+option php_namespace = "Yuanting\\Yt\\V1";
+option ruby_package = "Yuanting::Yt::V1";
+
+message Vendor {
+  // Resource name of the vendor. It must have the format of "vendors/*".
+  // For example: "vendors/1".
+  string name = 1;
+  string title = 2;
+  string description = 3;
+  string telephone = 4;
+  //  Address address = 5;
+  //  Contact contact = 6;
+  //  BankAccount bank_account = 7;
+  google.protobuf.Timestamp create_time = 8;
+  google.protobuf.Timestamp update_time = 9;
+}

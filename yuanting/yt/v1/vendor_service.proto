@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package yuanting.yt.v1;
+
+import "google/api/client.proto";
+import "google/api/annotations.proto";
+import "yuanting/yt/v1/vendor.proto";
+
+option csharp_namespace = "Yuanting.Yt.V1";
+option go_package = "github.com/yuantingapis/go-genproto/yuanting/yt;yt";
+option java_multiple_files = true;
+option java_outer_classname = "VendorServiceProto";
+option java_package = "ltd.yuanting.yt";
+option objc_class_prefix = "YT";
+option php_namespace = "Yuanting\\Yt\\V1";
+option ruby_package = "Yuanting::Yt::V1";
+
+service VendorService {
+  option (google.api.default_host) = "yt.yuantingapis.ltd";
+
+  rpc GetVendor(GetVendorRequest) returns (Vendor) {
+    option (google.api.http) = {
+      get: "/v1/{name=vendors/*}"
+    };
+  }
+}
+
+message GetVendorRequest {
+  string name = 1;
+}
+
+
+

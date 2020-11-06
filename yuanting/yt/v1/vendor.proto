@@ -5,7 +5,7 @@ package yuanting.yt.v1;
 import "google/protobuf/timestamp.proto";
 
 option csharp_namespace = "Yuanting.Yt.V1";
-option go_package = "github.com/yuantingapis/go-genproto/yuanting/yt;yt";
+option go_package = "github.com/yuantingapis/go-genproto/yuanting/yt/v1;yt";
 option java_multiple_files = true;
 option java_outer_classname = "VendorProto";
 option java_package = "ltd.yuanting.yt";

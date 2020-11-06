@@ -16,7 +16,7 @@ option php_namespace = "Yuanting\\Yt\\V1";
 option ruby_package = "Yuanting::Yt::V1";
 
 service VendorService {
-  option (google.api.default_host) = "yt.yuantingapis.ltd";
+  option (google.api.default_host) = "localhost:50051";
 
   rpc GetVendor(GetVendorRequest) returns (Vendor) {
     option (google.api.http) = {

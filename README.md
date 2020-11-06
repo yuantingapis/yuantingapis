@@ -17,8 +17,8 @@ protoc -I . -I $API_COMMON_PROTOS \
 
 ```bash
 protoc -I . -I $API_COMMON_PROTOS \
-    --go_gapic_out ../go-client \
-    --go_gapic_opt 'go-gapic-package=github.com/yuantingapis/go-client/yuanting/yt/v1;yt' \
-    --go_gapic_opt 'module=github.com/yuantingapis/go-client' \
+    --go_gapic_out ../yuanting-go \
+    --go_gapic_opt 'go-gapic-package=github.com/yuantingapis/yuanting-go/yuanting/yt/v1;yt' \
+    --go_gapic_opt 'module=github.com/yuantingapis/yuanting-go' \
     yuanting/yt/v1/*.proto
 ```

@@ -4,29 +4,45 @@ package yuanting.yt.v1;
 
 import "google/api/client.proto";
 import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "google/api/resource.proto";
 import "yuanting/yt/v1/vendor.proto";
 
 option csharp_namespace = "Yuanting.Yt.V1";
 option go_package = "github.com/yuantingapis/go-genproto/yuanting/yt/v1;yt";
 option java_multiple_files = true;
 option java_outer_classname = "VendorServiceProto";
-option java_package = "ltd.yuanting.yt";
+option java_package = "ltd.yuanting.yt.v1";
 option objc_class_prefix = "YT";
 option php_namespace = "Yuanting\\Yt\\V1";
 option ruby_package = "Yuanting::Yt::V1";
 
+// Service interface for Vendor.
 service VendorService {
   option (google.api.default_host) = "localhost:50051";
 
+  // Lookup for a single Vendor.
+  // Throws "Target not found" if no such vendor found, or if caller does not
+  // have permissions to access it.
   rpc GetVendor(GetVendorRequest) returns (Vendor) {
     option (google.api.http) = {
       get: "/v1/{name=vendors/*}"
     };
+    option (google.api.method_signature) = "name";
   }
 }
 
+// Request message for GetVendor.
 message GetVendorRequest {
-  string name = 1;
+  // The name of the account to lookup.
+  // Format: vendors/{id}
+  // Example: "vendors/100"
+  string name = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.resource_reference) = {
+    type: "yt.yuanting.ltd/Vendor"
+    }
+  ];
 }
 
 

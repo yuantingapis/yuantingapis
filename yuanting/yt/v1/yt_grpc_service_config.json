@@ -1,0 +1,24 @@
+{
+  "methodConfig": [
+    {
+      "name": [
+        {
+          "service": "yuanting.yt.v2.VendorService",
+          "method": "GetVendor"
+        }
+      ],
+      "timeout": "60s",
+      "retryPolicy": {
+        "maxAttempts": 5,
+        "initialBackoff": "0.100s",
+        "maxBackoff": "60s",
+        "backoffMultiplier": 1.3,
+        "retryableStatusCodes": [
+          "DEADLINE_EXCEEDED",
+          "INTERNAL",
+          "UNAVAILABLE"
+        ]
+      }
+    }
+  ]
+}

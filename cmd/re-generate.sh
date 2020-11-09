@@ -6,7 +6,7 @@ source cmd/lib.sh || {
 }
 
 # API_COMMON_PROTOS refers https://github.com/googleapis/api-common-protos
-# Go protos.
+# Generate Go protos.
 runcmd protoc -I . -I $API_COMMON_PROTOS \
   --go_out=../go-genproto \
   --go_opt=paths=source_relative \
@@ -17,17 +17,18 @@ runcmd protoc -I . -I $API_COMMON_PROTOS \
   exit 1
 }
 
-# Go client.
+# Generate Go client.
 runcmd protoc -I . -I $API_COMMON_PROTOS \
   --go_gapic_out=../yuanting-go \
   --go_gapic_opt 'go-gapic-package=github.com/yuantingapis/yuanting-go/yuanting/yt/v1;yt' \
   --go_gapic_opt 'module=github.com/yuantingapis/yuanting-go' \
+  --go_gapic_opt="grpc-service-config=./yuanting/yt/v1/yt_grpc_service_config.json" \
   yuanting/yt/v1/*.proto || {
   err
   exit 1
 }
 
-# OpenAPIs
+# Generate OpenAPI document.
 runcmd protoc -I . -I $API_COMMON_PROTOS \
   --grpc-gateway_out ../go-genproto \
   --grpc-gateway_opt logtostderr=true \

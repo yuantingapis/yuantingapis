@@ -2,27 +2,46 @@ syntax = "proto3";
 
 package yuanting.yt.v1;
 
+import "google/api/field_behavior.proto";
+import "google/api/resource.proto";
 import "google/protobuf/timestamp.proto";
 
 option csharp_namespace = "Yuanting.Yt.V1";
 option go_package = "github.com/yuantingapis/go-genproto/yuanting/yt/v1;yt";
 option java_multiple_files = true;
 option java_outer_classname = "VendorProto";
-option java_package = "ltd.yuanting.yt";
+option java_package = "ltd.yuanting.yt.v1";
 option objc_class_prefix = "YT";
 option php_namespace = "Yuanting\\Yt\\V1";
 option ruby_package = "Yuanting::Yt::V1";
 
+// Vendor represents an organization purchase orders can be made from.
 message Vendor {
-  // Resource name of the vendor. It must have the format of "vendors/*".
-  // For example: "vendors/1".
-  string name = 1;
-  string title = 2;
+  option (google.api.resource) = {
+    type: "yt.yuanting.ltd/Vendor"
+    pattern: "accounts/{id}"
+  };
+
+  // Resource name of this vendor.
+  // Format: vendors/{id}
+  // Example: "vendors/100"
+  string name = 1 [(google.api.field_behavior) = REQUIRED, (google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Human-readable display name for this vendor.
+  string title = 2 [(google.api.field_behavior) = REQUIRED];
+
+  // Description of this vendor.
   string description = 3;
+
+  // Telephone of this vendor.
   string telephone = 4;
+
   //  Address address = 5;
   //  Contact contact = 6;
   //  BankAccount bank_account = 7;
-  google.protobuf.Timestamp create_time = 8;
-  google.protobuf.Timestamp update_time = 9;
+  // Time when this vendor was originally created.
+  google.protobuf.Timestamp create_time = 8 [(google.api.field_behavior) = OUTPUT_ONLY];;
+
+  // Time when vendor payload fields were last updated.
+  google.protobuf.Timestamp update_time = 9 [(google.api.field_behavior) = OUTPUT_ONLY];;
 }
